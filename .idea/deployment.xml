@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="soylang.org" confirmBeforeUploading="false" confirmBeforeDeletion="false" autoUploadExternalChanges="true">
+    <option name="confirmBeforeDeletion" value="false" />
+    <option name="confirmBeforeUploading" value="false" />
+    <serverData>
+      <paths name="soylang.org">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/.docs" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.git" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.gitattributes" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.gitignore" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.tests" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.vscode" />
+            <excludedPath local="true" path="$PROJECT_DIR$/README.md" />
+            <excludedPath local="true" path="$PROJECT_DIR$/ts" />
+            <excludedPath local="true" path="$PROJECT_DIR$/LICENSE" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>

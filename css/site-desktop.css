@@ -1,0 +1,80 @@
+/* ---------------- FONTS ---------------- */
+@font-face {
+	font-family: 'Menlo';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Menlo'), url('menlo.woff') format('woff');
+}
+@font-face {
+	font-family: 'Monaco';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Monaco'), url('monaco.woff') format('woff');
+}
+@font-face {
+	font-family: 'Ubuntu Mono';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Ubuntu Mono'), url('ubuntu-mono-regular.woff') format('woff');
+}
+@font-face {
+	font-family: 'Informa Pro';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Inofrma Pro'), url('informa-pro-normal.woff') format('woff');
+}
+
+* {
+	/* -------- LIGHT THEME VARIABLES -------- */
+	--light-main-bg: #ebeceb;
+	--light-main-fg: #101511;
+	/* -------- DARK THEME VARIABLES -------- */
+	--dark-main-bg: #1b1c1b;
+	--dark-main-fg: #c0c5c1;
+}
+
+/* ---------------- LIGHT THEME SELECTOR ---------------- */
+.light-theme {
+	--main-bg: var(--light-main-bg);
+	--main-fg: var(--light-main-fg);
+}
+
+/* ---------------- DARK THEME SELECTOR ---------------- */
+.dark-theme {
+	--main-bg: var(--dark-main-bg);
+	--main-fg: var(--dark-main-fg);
+}
+
+body {
+	background: var(--main-bg);
+	color: var(--main-fg);
+}
+
+/* ---------------- USER INTERFACE ---------------- */
+.menu {
+
+}
+
+.button {
+
+}
+
+.progress {
+
+}
+
+/* ---------------- LIGHT COLOR SCHEME ---------------- */
+@media (prefers-color-scheme: light) {
+	html, body {
+		background: var(--light-main-bg);
+		color: var(--light-main-fg);
+	}
+}
+
+/* ---------------- DARK COLOR SCHEME ---------------- */
+@media (prefers-color-scheme: dark) {
+	html, body {
+		background: var(--dark-main-bg);
+		color: var(--dark-main-fg);
+	}
+}

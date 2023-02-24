@@ -1,0 +1,66 @@
+#Options +FollowSymLinks
+RewriteEngine On
+
+# Enforce HTTPS/TLS
+#RewriteCond %{HTTP:X-Forwarded-Proto} =http [OR]
+#RewriteCond %{HTTP:X-Forwarded-Proto} =""
+#RewriteCond %{HTTPS} !=on
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# API subdomain proxy
+#RewriteCond %{HTTP_HOST} ^api\.soylang\.com$
+#RewriteCond %{HTTP_HOST} ^api\.soylang\.net$ [OR]
+RewriteCond %{HTTP_HOST} ^api\.soylang\.org$
+RewriteRule ^(.*)$ 																	index.php [QSA,NC,L]
+
+#ErrorDocument 404 index.php?error=404&data=%{HTTP_REQUEST_URI}
+#ErrorDocument 500 index.php?error=500&data=%{HTTP_REQUEST_URI}
+#ErrorDocument 502 index.php?error=502&data=%{HTTP_REQUEST_URI}
+
+# Common Files for HTTP/SEO/Other Standards
+RewriteRule favicon\.(ico|png|jpe?g|webp)											favicon.$1 [NC,L]
+RewriteRule site\.webmanifest$														site.webmanifest [NC,L]
+RewriteRule robots\.txt$															robots.txt [NC,L]
+RewriteRule sitemap\.xml															sitemap.xml [NC,L]
+
+#TODO: Move this to the API instead
+RewriteRule ^code/([\w\-]+)/([\w\-/.!@^]+)/([\w\-_.!@^]+)\.([\w\-_]{1,5})/?$		index.php?code=$1&file=$3.$4&sub=$2 [NC,L]
+RewriteRule ^code/([\w\-]+)/([\w\-_.!@^]+)\.([\w\-_]{1,5})/?$						index.php?code=$1&file=$2.$3 [NC,L]
+
+# Guides
+#RewriteRule ^guides?/([\w\-]+)/([\w\-_.!@^]+)\.css/?$								index.php?tutorial=$1&css=$2.css [NC,L]
+#RewriteRule ^guides?/([\w\-]+)/([\w\-_.!@^]+)\.js/?$								index.php?tutorial=$1&js=$2.js [NC,L]
+#RewriteRule ^guides?/([\w\-]+)/([\w\-_.!@^]+)\.json/?$								index.php?tutorial=$1&json=$2.json [NC,L]
+#RewriteRule ^guides?/([\w\-]+)/([\w\-_.!@^]+)\.(scg|jpe?g|png|gif|webp|bmp)/?$		index.php?tutorial=$1&img=$2.$3 [NC,L]
+
+# MIME Type Specializations
+RewriteRule ^data/([\w\-_!@^/]+)/([\w\-_.!@^]+)\.html/?$							index.php?data=/data/$1/&mime=html&html=$2.html [NC,L]
+RewriteRule ^data/([\w\-_!@^/]+)/([\w\-_.!@^]+)\.css/?$								index.php?data=/data/$1/&mime=css&css=$2.css [NC,L]
+RewriteRule ^data/([\w\-_!@^/]+)/([\w\-_.!@^]+)\.js/?$								index.php?data=/data/$1/&mime=js&js=$2.js [NC,L]
+RewriteRule ^data/([\w\-_!@^/]+)/([\w\-_.!@^]+)\.json/?$							index.php?data=/data/$1/&mime=json&json=$2 [NC,L]
+RewriteRule ^data/([\w\-_!@^/]+)/([\w\-_.!@^]+)\.(svg|jpe?g|png|gif|webp|bmp)/?$	index.php?data=/data/$1/&mime=img&img=$2.$2&ext=$3 [NC,L]
+RewriteRule ^data/([\w\-_!@^/]+)/([\w\-_.!@^]+)\.(avi|mp4)/?$						index.php?data=/data/$1/&mime=video&video=$2.$2&ext=$3 [NC,L]
+RewriteRule ^data/([\w\-_!@^/]+)/([\w\-_.!@^]+)\.(woff2?|otf|ttf|eot|sfnt)/?$		index.php?data=/data/$1/&mime=font&font=$2.$2&ext=$3 [NC,L]
+RewriteRule ^data/([\w\-_!@^/]+)/([\w\-_.!@^]+)\.(vs|fs)/?$							index.php?data=/data/$1/&mime=glsl&glsl=$2&ext=$3 [NC,L]
+RewriteRule ^data/([\w\-_!@^/]+)/([\w\-_.!@^]+)\.zip/?$								index.php?data=/data/$1/&mime=zip&zip=$2.zip [NC,L]
+
+# MIME Type Specializations
+RewriteRule ^(css/)?([\w\-_.!@^]+)\.css/?$											index.php?mime=css&css=$2.css [NC,L]
+RewriteRule ^(js/)?([\w\-_.!@^]+)\.js/?$											index.php?mime=js&js=$2.js [NC,L]
+RewriteRule ^(json/)?([\w\-_.!@^]+)\.json/?$										index.php?mime=json&json=$2 [NC,L]
+RewriteRule ^(img/)?([\w\-_.!@^]+)\.(svg|jpe?g|png|gif|webp|bmp)/?$					index.php?mime=img&img=$2.$3&ext=$3 [NC,L]
+RewriteRule ^(video/)?([\w\-_.!@^]+)\.(avi|mp4)/?$									index.php?mime=video&video=$2.$3&ext=$3 [NC,L]
+RewriteRule ^(audio/)?([\w\-_.!@^]+)\.(mp3|ogg|wav)/?$								index.php?mime=audio&audio=$2.$3&ext=$3 [NC,L]
+RewriteRule ^(font/)?([\w\-_.!@^]+)\.(woff2?|otf|ttf|eot|sfnt)/?$					index.php?mime=font&font=$2.$3&ext=$3 [NC,L]
+RewriteRule ^(glsl/)?([\w\-_.!@^]+)\.(vs|fs)/?$										index.php?mime=glsl&glsl=$2&ext=$3 [NC,L]
+RewriteRule ^(zip/)?([\w\-_.!@^]+)\.zip/?$											index.php?mime=zip&zip=$2.zip [NC,L]
+
+# Page Specializations
+RewriteRule ^auth/(.*)?$															index.php?auth=$1 [QSA,L]
+RewriteRule ^ucp/?(.*)?$															index.php?ucp=$1 [QSA,L]
+RewriteRule ^acp/?(.*)?$															index.php?acp=$1 [QSA,L]
+
+# Pass all other URL query strings through index.php
+RewriteRule ^/?$																	index.php [QSD,NC,L]
+RewriteRule ^([\w\-_]+)/?$															index.php?page=$1 [QSA,NC,L]
+RewriteRule ^([\w\-_]+)/(.*)/?$														index.php?page=$1&args=$2 [QSA,NC,L]

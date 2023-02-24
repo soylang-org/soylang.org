@@ -1,0 +1,24 @@
+@font-face {
+	font-family: 'Menlo';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Menlo'), url('menlo.woff') format('woff');
+}
+@font-face {
+	font-family: 'Monaco';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Monaco'), url('monaco.woff') format('woff');
+}
+@font-face {
+	font-family: 'Ubuntu Mono';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Ubuntu Mono'), url('ubuntu-mono-regular.woff') format('woff');
+}
+@font-face {
+	font-family: 'Informa Pro';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Inofrma Pro'), url('informa-pro-normal.woff') format('woff');
+}

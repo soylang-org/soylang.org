@@ -1,0 +1,87 @@
+# Helper directories
+.backup/
+.notes/
+.scratch/
+.tmp/
+
+# Windows
+$RECYCLE.BIN/
+*.lnk
+*.stackdump
+Thumbs.db
+Thumbs.db:encryptable
+[Dd]esktop.ini
+ehthumbs.db
+ehthumbs_vista.db
+
+# Mac OS
+.AppleDouble
+.DS_Store
+.LSOverride
+._*
+Icon^M
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.fseventsd
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+.apdisk
+.com.apple.timemachine.donotpresent
+Network Trash Folder/
+Temporary Items/
+
+# Linux
+*.lock
+.Trash-*
+.directory
+.fuse_hidden*
+.nfs*
+
+# Miscellaneous
+*~
+~$*
+~*
+
+# IDE Generated Directories
+.idea/*
+!.idea/deployment.xml
+!.idea/modules.xml
+!.idea/php.xml
+!.idea/soylang.org.iml
+!.idea/webResources.xml
+#!.idea/workspace.xml
+.vs/
+
+# NodeJS Generated Directories
+node_modules/
+package-lock.json
+
+# Exclude Image Files
+*.gif
+*.ico
+*.jpg
+*.jpeg
+*.JPG
+*.JPEG
+*.png
+*.svg
+*.ai
+*.psd
+*.tga
+!favicon.*
+
+# Exclude Other Documents
+*.pdf
+
+# Exclude Project specific directories
+# javasrcipt files are automatically generated via WebPack
+data/*
+#!data/font/
+#!data/img/
+js/*
+#!js/zip.min.js
