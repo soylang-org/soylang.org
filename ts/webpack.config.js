@@ -100,7 +100,31 @@ module.exports = (env) => {
 	console.log('CPU Count: ', os.cpus().length, '\nENV: ', env, '\nOut Name: ', out_name, '\nMinify: ', env.minify);
 	return [
 		//TODO: Add in sub-modules/libraries (Rich Text Editor, Socket, etc..)
-
+		createConfig(
+			'syntax-cc-worker-inline', out_name, !!(env.minify),
+			[Target.WORKER, ESVer],
+			{
+				'syntax-cc-worker-inline': {
+					import: './src/plugins/syntax-cc/SyntaxCCWorker.ts',
+					library: { type: 'self'}
+				}
+			},
+			Plugins, []
+		),
+		createConfig(
+			'syntax-cc', out_name, !!(env.minify),
+			[Target.WEB, ESVer],
+			{
+				'syntax-cc': {
+					import: './src/plugins/syntax-cc/SyntaxCC.ts',
+					library: { type: 'self'}
+				}
+			},
+			Plugins,
+			['syntax-cc-worker-inline'],
+			[{test: /([\w_.]+)-inline([\w_.]+)?\.js$/i, type: 'asset/source'}],
+			{ 'syntax-cc-worker-inline': path.resolve(__dirname, `../js/syntax-cc-worker-inline${env.minify?'.min':''}.js`)}
+		),
 		// Site (Pages, and others that needs to move to its own configurations..)
 		createConfig(
 			'site', out_name, !!(env.minify),
@@ -108,7 +132,7 @@ module.exports = (env) => {
 			{
 				'common': {			import: './src/common.ts',									library: {type: 'umd'},													},
 				'socket': {			import: './src/plugins/socket/socket.ts',					library: {type: 'umd', name: 'Socket'},			dependOn: ['common']	},
-				'api': {			import: './src/plugins/api/api.ts',							library: {type: 'umd', name: 'API'},			dependOn: ['common','socket']},
+				'api': {			import: './src/plugins/api/api.ts',							library: {type: 'umd', name: 'API'},			dependOn: ['common']	},
 				'ui': {				import: './src/plugins/ui/ui.ts',							library: {type: 'umd', name: 'UI'},				dependOn: ['common']	},
 				'web2d': {			import: './src/plugins/web2d/web2d.ts',						library: {type: 'umd'},													},
 				'web3d': {			import: './src/plugins/web3d/web3d.ts',						library: {type: 'umd'},													},
@@ -123,6 +147,7 @@ module.exports = (env) => {
 				//'support': {		import: './src/site/support.ts',							library: {type: 'self'},						dependOn: ['common','ui']},
 				'user-portal': {	import: './src/site/user-portal.ts',						library: {type: 'self'},						dependOn: ['common','ui','api']},
 				'admin-portal': {	import: './src/site/admin-portal.ts',						library: {type: 'self'},						dependOn: ['common','ui','api']},
+				'site': {			import: './src/site.ts',									library: {type: 'self'},},
 			}, Plugins,
 		),
 		// Service Worker
@@ -130,7 +155,7 @@ module.exports = (env) => {
 			'sw', out_name, !!(env.minify),
 			[Target.WORKER,ESVer],
 			{
-				'sw': {				import: './src/sw/sw.ts',								library: {type: 'self'}},
+				'sw': {				import: './src/sw/sw.ts',									library: {type: 'self'}},
 			}, []
 		),
 	]

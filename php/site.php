@@ -37,6 +37,7 @@ class SiteFooter {
 	private static array $tags = [];
 	private static array $css = [];
 	private static array $js = [];
+	private static array $jsEmbed = [];
 
 	static public function outputFooter(): void
 	{
@@ -52,6 +53,9 @@ class SiteFooter {
 		// Output JS references
 		foreach (SiteFooter::$js as $js) { linkJS($js); }
 
+		// Output JS Embeds
+		foreach (SiteFooter::$jsEmbed as $js) { embedJS($js); }
+
 		// End footer </footer>, </body>, </html>
 		echo '</footer></body></html>';
 	}
@@ -59,5 +63,6 @@ class SiteFooter {
 	static public function addTag($str): void { SiteFooter::$tags[] = $str; }
 	static public function addCSS($filename): void { SiteFooter::$css[] = $filename; }
 	static public function addJS($filename): void { SiteFooter::$js[] = $filename; }
+	static public function embedJS($filename): void { SiteFooter::$jsEmbed[] = $filename; }
 }
 //================================================================

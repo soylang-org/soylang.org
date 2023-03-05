@@ -1,6 +1,6 @@
 {
 	"name": "soylang.org",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"description": "https://soylang.org",
 	"main": "src/site.ts",
 	"keywords": [
@@ -18,14 +18,15 @@
 	},
 	"devDependencies": {
 		"@aws-sdk/types": "^3.226.0",
-		"@types/chrome": "^0.0.203",
+		"@types/chrome": "^0.0.219",
 		"@types/css": "^0.0.33",
 		"@types/html": "^1.0.1",
-		"@types/serviceworker": "^0.0.58",
+		"@types/node": "^18.7.2",
+		"@types/serviceworker": "^0.0.63",
 		"@types/twitch-ext": "^1.24.4",
 		"@types/vimeo": "^2.1.5",
-		"@types/web": "^0.0.84",
-		"@types/webgl2": "^0.0.6",
+		"@types/web": "^0.0.94",
+		"@types/webgl2": "^0.0.7",
 		"@types/webpack-env": "^1.18.0",
 		"@types/websocket": "^1.0.5",
 		"@types/youtube": "^0.0.47",

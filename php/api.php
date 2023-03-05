@@ -26,8 +26,8 @@ function APIErrorResponse($code, $msg): void
 //================================================================
 // Allow CORS by setting headers
 //================================================================
-header('Access-Control-Allow-Origin: ' . "${url['scheme']}://${url['host']}");
-header('Access-Control-Allow-Headers: x-requested-with,cookie,authorization,scope,client_id,client_secret,refresh_token,reset_token,client_token');
+header('Access-Control-Allow-Origin: '."${url['scheme']}://${url['host']}");
+header('Access-Control-Allow-Headers: x-requested-with,cookie,authorization,scope,x-client-id,x-client-secret,x-refresh_token,x-refresh-token,x-client-token');
 header('Access-Control-Allow-Credentials: true');    // Allows for cookies and web-authentication
 header('Content-Type: text/plain;charset=UTF-8');    // default MIME type
 /*
@@ -48,10 +48,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 	header('Access-Control-Max-Age: 86400');
 	die();
 }
+//================================================================
+// Public Content
+//================================================================
+switch ($_SERVER['REQUEST_METHOD']) {
+case 'GET':
+	{
+		echo json_encode([
+			'authorized' => TRUE,
+			'method' => 'GET',
+			'data' => $_GET
+		]);
+		die();
+	}
+	break;
+case 'POST':
+	{
+		echo json_encode([
+			'authorized' => TRUE,
+			'method' => 'POST',
+			'data' => $_POST
+		]);
+		die();
+	}
+	break;
+}
+// $_SESSION['client_secret'] must be set, otherwise unauthorized access is forbidden
+if (!isset($_SESSION['client_secret'])) {
+	APIErrorResponse(HTTPResponseCode::CLIENT_ERROR_UNAUTHORIZED, 'Authorization required');
+}
 // Get the headers and change the header keys to lowercase
 $headers = array_change_key_case(getallheaders());
 // `client_secret` must be set, otherwise unauthorized access is forbidden
-if (!array_key_exists('client_secret', $headers)) {
+if (!array_key_exists('x-client-secret', $headers) || ($_SESSION['client_secret'] != $headers['x-client-secret'])) {
 	APIErrorResponse(HTTPResponseCode::CLIENT_ERROR_UNAUTHORIZED, 'Authorization required');
 }
 //================================================================

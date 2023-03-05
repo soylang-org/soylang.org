@@ -13,8 +13,8 @@
 		/* Language and Environment */
 		"target":"es2022",									/* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
 		"lib": [
-			"DOM",
 			"ES2021",
+			"DOM",
 			"WebWorker"
 		],													/* Specify a set of bundled library declaration files that describe the target runtime environment. */
 		// "jsx": "preserve",                                /* Specify what JSX code is generated. */
@@ -107,6 +107,8 @@
 	"files": [
 		"src/site.ts",
 		"src/common.ts",
+		"src/plugins/syntax-cc/SyntaxCCWorker.ts",
+		"src/plugins/syntax-cc/SyntaxCC.ts",
 		"src/plugins/socket/socket.ts",
 		"src/plugins/api/api.ts",
 		"src/plugins/ui/ui.ts",

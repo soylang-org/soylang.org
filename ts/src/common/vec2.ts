@@ -22,6 +22,3 @@ export class vec2 {
 	//TODO: Add in math operations
 
 }
-
-let example = new vec2();
-example.x

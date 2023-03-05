@@ -1,15 +1,15 @@
 {
 	"$schema": "https://json.schemastore.org/web-manifest-combined.json",
 	"id": "https://soylang.org/",
-	"name": "Soy GPPL",
-	"short_name": "soylang",
-	"description": "Soy General Purpose Programming Web App",
+	"name": "Soylang",
+	"short_name": "soy",
+	"description": "Soy General Purpose Programming Language Web App",
 	"start_url": "/",
 	"scope": "/",
 	"display": "standalone",
 	"display_override": ["standalone","minimal-ui","browser"],
-	"background_color": "#161416",
-	"theme_color": "#161418",
+	"background_color": "#102f10",
+	"theme_color": "#246a24",
 	"orientation": "any",
 	"icons": [
 		{ "src": "/soylang.svg", "sizes": "any", "type": "image/svg" },
@@ -38,17 +38,20 @@
 		{
 			"name": "Forum",
 			"url": "/forum",
-			"description": "Soy - Forum"
+			"description": "Soy - Forum",
+			"icon": { "src": "/soylang-thumb-96.png", "sizes": "96x96", "type": "image/png" }
 		},
 		{
 			"name": "Documentation",
 			"url": "/docs",
-			"description": "Soy - Docs"
+			"description": "Soy - Docs",
+			"icon": { "src": "/soylang-thumb-96.png", "sizes": "96x96", "type": "image/png" }
 		},
 		{
 			"name": "Changelog",
 			"url": "/changelog",
-			"description": "Soy - Changelog"
+			"description": "Soy - Changelog",
+			"icon": { "src": "/soylang-thumb-96.png", "sizes": "96x96", "type": "image/png" }
 		}
 	]
 }

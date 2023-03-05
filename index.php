@@ -1,6 +1,4 @@
 <?php
-session_name("soylang");
-session_start();
 require_once('php/common.php');
 //================================================================
 // API
@@ -40,18 +38,64 @@ SiteHeader::addTag('<meta name="background_color" content="#104106" media="(pref
 SiteHeader::addTag('<meta name="background_color" content="#106306" media="(prefers-color-scheme: dark)" />');
 SiteHeader::addTag('<meta name="description" content="Soy General Purpose Programming Language." />');
 SiteHeader::addTag('<meta name="keywords" content="soylang, soy language, soy programming, programming language" />');
-//SiteHeader::addTag('<link rel="apple-touch-icon" href="/soylang-thumb-512.png" />');
-//SiteHeader::addTag('<link rel="apple-touch-icon-precomposed" href="/soylang-thumb-512.png" />');
-//SiteHeader::addTag('<link rel="apple-touch-startup-image" href="/soylang-thumb-512.png" media="orientation: portrait" />');
-//SiteHeader::addTag('<link rel="apple-touch-startup-image" href="/soylang-thumb-512.png" media="orientation: landscape" />');
+SiteHeader::addTag('<link rel="apple-touch-icon" href="/soylang-thumb-512.png" />');
+SiteHeader::addTag('<link rel="apple-touch-icon-precomposed" href="/soylang-thumb-512.png" />');
+SiteHeader::addTag('<link rel="apple-touch-startup-image" href="/soylang-thumb-512.png" media="orientation: portrait" />');
+SiteHeader::addTag('<link rel="apple-touch-startup-image" href="/soylang-thumb-512.png" media="orientation: landscape" />');
 SiteHeader::addTag('<link rel="icon" href="/favicon.png" />');
-//SiteHeader::addTag('<link rel="manifest" href="/site.webmanifest" crossorigin="anonymous" />');
+SiteHeader::addTag('<link rel="manifest" href="/site.webmanifest" crossorigin="anonymous" />');
 SiteHeader::addCSS($GLOBALS['mobile'] ? 'site-mobile.css' : 'site-desktop.css');
+SiteHeader::addJS('common.min.js');
+SiteHeader::addJS('api.min.js');
 SiteHeader::addJS('ui.min.js');
+SiteHeader::addJS('syntax-cc.min.js');
 // Set the default page title
 SiteHeader::setTitle('Soylang Project');
 SiteHeader::addClass('dark-theme');
+// Footer: Add Site JS
+SiteFooter::addJS('site.min.js');
 // Output Page
+//https://soylang.org/changelog/soy-repl/src/tui/rect.cpp
+/*
+api.soylang.org/docs/lang - Get list of programming languages
+api.soylang.org/docs/lang/soy - Get documentation on lang/soy
+
+{
+	"api_ver": 1,
+	"sections":
+	[
+		"articles",			// Articles
+		"logs",				// Change-Logs
+		"docs",				// Documentation
+		"editor",			// Editor?
+		"forum",			// Forums
+		"man",				// Manuals
+		"news",				// News
+		"notify",			// Push Notifications
+		"resources",		// Resources
+		"rss",				// RSS Feeds
+		"search",			// Site Search
+		"support",			// Site Support
+		"tools",			// Tools
+		"tutorials",		// Tutorials,
+		"user",				// User API
+		"admin",			// Admin API
+	]
+	"docs":
+	{
+		"categories":
+		[
+			"lang",			// programming languages
+			"tools",		//
+			"",				//
+		]
+	}
+}
+
+documentation -> programming languages -> soy / <?:section> / <?:sub-section>
+	https://soylang.org/docs/lang/soy
+*/
+
 if (isset($_GET['page'])) {
 	// Switch between supported pages
 	switch (getQSA('page')) {
