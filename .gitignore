@@ -69,7 +69,7 @@ package-lock.json
 *.JPG
 *.JPEG
 *.png
-*.svg
+#*.svg
 *.ai
 *.psd
 *.tga
